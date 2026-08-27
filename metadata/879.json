@@ -1,0 +1,33 @@
+{
+  "tokenId": "879",
+  "name": "Hoodzilla #879",
+  "description": "4,444 Hoodzillas living on Robinhood Chain, reimagined in Robinhood green.",
+  "image": "https://hoodzillas.github.io/assets/images/879.webp",
+  "traits": [
+    {
+      "trait_type": "BG",
+      "value": "Robinhood Radial"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sports Purple"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Urban Blue"
+    },
+    {
+      "trait_type": "Skin",
+      "value": "Cyan Blades"
+    },
+    {
+      "trait_type": "neck",
+      "value": "Bow Tie"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Ciggie"
+    }
+  ],
+  "image_url": "https://hoodzillas.github.io/assets/images/879.webp"
+}
