@@ -47,6 +47,11 @@
   .step{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin:10px 0;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.06);border-radius:12px}
   .step input{width:18px;height:18px;margin-top:2px;accent-color:var(--green)}
   .step a{color:var(--green);text-decoration:none;word-break:break-all}
+  .qtyrow{display:flex;align-items:center;gap:12px;margin:14px 0 4px;padding:12px 14px;background:rgba(0,200,5,.06);border:1px solid rgba(0,200,5,.2);border-radius:12px}
+  .qtyrow label{font-weight:700;font-size:.9em}
+  .qtyrow select{flex:0 0 auto;padding:8px 12px;border-radius:10px;background:#0c170e;color:var(--fg);border:1px solid rgba(0,200,5,.4);font-size:1em;font-weight:700}
+  .qtyrow .est{font-size:.82em;color:var(--muted)}
+  .qtyrow .est b{color:var(--green)}
   .step a:hover{text-decoration:underline}
   button{width:100%;padding:15px;border:0;border-radius:12px;font-size:1.05em;font-weight:800;cursor:pointer;margin-top:6px;color:#04140a;background:linear-gradient(90deg,var(--green2),var(--green));transition:.2s}
   button:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px)}
@@ -72,7 +77,7 @@
 <section class="hero">
   <div>
     <div class="eyebrow">● ROBINHOOD CHAIN · 4,444 SUPPLY</div>
-    <h1>THE GREEN APES OF ROBINHOOD.</h1>
+    <h1>GREEN ZILLAS.</h1>
     <p class="lead">Hoodzillas are 4,444 on-chain characters living on Robinhood Chain, reimagined in Robinhood green. Free mint for the first 5, then 0.0001 ETH. Do the steps, claim your Hood.</p>
     <div class="stats">
       <div class="stat"><b id="sMinted">—</b><span>MINTED</span></div>
@@ -118,6 +123,26 @@
     <div class="step"><input type="checkbox" id="c1"><div>1. Follow <a href="https://x.com/hoodzilla_xyz" target="_blank" rel="noopener">@hoodzilla_xyz</a> on X</div></div>
     <div class="step"><input type="checkbox" id="c2"><div>2. Retweet the announcement:<br><a href="https://x.com/hoodzilla_xyz/status/1" target="_blank" rel="noopener">x.com/hoodzilla_xyz/status/1</a></div></div>
     <div class="step"><input type="checkbox" id="c3"><div>3. I completed both &amp; mint on Robinhood Chain (chainId 4663)</div></div>
+
+    <div class="qtyrow">
+      <label for="qty">How many?</label>
+      <select id="qty">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+      <span id="est" class="est"></span>
+    </div>
+
     <button id="connect" disabled>Connect Wallet</button>
     <button id="mint" disabled>Mint Hoodzilla</button>
     <div id="status"></div>
@@ -126,8 +151,6 @@
 
 <footer>
   Contract: 0x63124f85096791B94748cB88786Cd649bb246F2E<br>
-  Explorer: <a href="https://robinhoodchain.com/explorer/address/0x63124f85096791B94748cB88786Cd649bb246F2E" target="_blank" rel="noopener">robinhoodchain.com/explorer</a> ·
-  Art: <a href="https://hoodzillas.github.io/hoodzillas/" target="_blank" rel="noopener">hoodzillas.github.io</a><br>
   © 2026 Hoodzilla
 </footer>
 
@@ -141,11 +164,24 @@ const c1=document.getElementById('c1'),c2=document.getElementById('c2'),c3=docum
 const connectBtn=document.getElementById('connect'),mintBtn=document.getElementById('mint');
 const statusEl=document.getElementById('status'),bar=document.getElementById('bar');
 const mintedEl=document.getElementById('minted'),leftEl=document.getElementById('left'),sMinted=document.getElementById('sMinted');
+const qtySel=document.getElementById('qty'),estEl=document.getElementById('est');
 let signer,contract,provider;
+let userMintedCached=0n;
 
 function gateOk(){return c1.checked&&c2.checked&&c3.checked;}
 function refresh(){connectBtn.disabled=!gateOk();if(signer)mintBtn.disabled=!gateOk();}
 [c1,c2,c3].forEach(c=>c.onchange=refresh);
+
+function updateEst(){
+  const n=BigInt(qtySel.value);
+  const freeLeft=(userMintedCached<5n)?5n-userMintedCached:0n;
+  const paid=n>freeLeft?n-freeLeft:0n;
+  const free=n-paid;
+  let txt='<b>'+free.toString()+'</b> free · <b>'+paid.toString()+'</b> paid';
+  if(paid>0n) txt+=' · '+(Number(paid)*0.0001).toFixed(4)+' ETH';
+  estEl.innerHTML=txt;
+}
+qtySel.onchange=updateEst;
 
 async function loadStats(){
   try{
@@ -158,6 +194,11 @@ async function loadStats(){
     mintedEl.textContent=t+' / 4444';
     sMinted.textContent=t;
     leftEl.textContent=(4444-Number(total))+' left';
+    if(signer){
+      const addr=await signer.getAddress();
+      userMintedCached=await c.minted(addr);
+      updateEst();
+    }
   }catch(e){mintedEl.textContent='live stats unavailable';}
 }
 loadStats(); setInterval(loadStats,15000);
@@ -186,17 +227,19 @@ mintBtn.onclick=async()=>{
   try{
     mintBtn.disabled=true;
     const addr=await signer.getAddress();
-    const userMinted=await contract.minted(addr);
-    const freeLeft=(userMinted<5n)?5n-userMinted:0n;
-    const n=1n;
+    userMintedCached=await contract.minted(addr);
+    const freeLeft=(userMintedCached<5n)?5n-userMintedCached:0n;
+    const n=BigInt(qtySel.value);
+    if(userMintedCached+n>20n){statusEl.innerHTML='<span class="err">Max 20 per wallet (you minted '+userMintedCached.toString()+')</span>';mintBtn.disabled=!gateOk();return;}
     const paid=n>freeLeft?n-freeLeft:0n;
     const price=await contract.PRICE();
     const value=paid*price;
-    statusEl.innerHTML='Minting…';
+    updateEst();
+    statusEl.innerHTML='Minting '+n.toString()+'…';
     const tx=await contract.mint(n,{value});
     statusEl.innerHTML='Tx: '+tx.hash.slice(0,12)+'…';
     await tx.wait();
-    statusEl.innerHTML='<span class="ok">Minted! Welcome to the Hood.</span>';
+    statusEl.innerHTML='<span class="ok">Minted '+n.toString()+'! Welcome to the Hood.</span>';
     await loadStats();
   }catch(e){statusEl.innerHTML='<span class="err">'+e.message+'</span>';mintBtn.disabled=!gateOk();}
 };
