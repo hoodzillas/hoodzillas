@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hoodzilla — Mint</title>
-<script src="https://hoodzillas.github.io/hoodzillas/ethers.min.js"></script>
+<title>Hoodzilla — Green Zilla on Robinhood</title>
 <style>
   :root{--green:#00c805;--green2:#00b86b;--bg:#060a07;--fg:#e8ffe8;--muted:#8fbf9a}
   *{box-sizing:border-box}
@@ -35,32 +34,20 @@
   .card:hover{border-color:var(--green);transform:translateY(-2px)}
   .card h3{margin:0 0 6px;color:var(--green);font-size:1.05em}
   .card p{margin:0;color:var(--muted);font-size:.9em}
-  .phase{position:relative;padding-left:30px;border-left:2px solid rgba(0,200,5,.3)}
+  .phase{position:relative;padding-left:30px;border-left:2px solid rgba(0,200,5,.3);margin:14px 0}
   .phase::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--green)}
   .phase h3{margin:0 0 4px;font-size:1.05em}
   .phase span{color:var(--green);font-size:.75em;font-weight:700;letter-spacing:1px}
   .phase p{color:var(--muted);font-size:.9em;margin:4px 0 0}
-  .mintcard{background:rgba(255,255,255,.04);border:1px solid rgba(0,200,5,.2);border-radius:20px;padding:26px;max-width:520px;margin:0 auto}
-  .progress{height:10px;border-radius:999px;background:#11210f;overflow:hidden;margin:6px 0 4px}
-  .progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green2),var(--green));transition:width .6s}
-  .row{display:flex;justify-content:space-between;font-size:.8em;color:var(--muted);margin-bottom:14px}
-  .step{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin:10px 0;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.06);border-radius:12px}
-  .step input{width:18px;height:18px;margin-top:2px;accent-color:var(--green)}
-  .step a{color:var(--green);text-decoration:none;word-break:break-all}
-  .qtyrow{display:flex;align-items:center;gap:12px;margin:14px 0 4px;padding:12px 14px;background:rgba(0,200,5,.06);border:1px solid rgba(0,200,5,.2);border-radius:12px}
-  .qtyrow label{font-weight:700;font-size:.9em}
-  .qtyrow select{flex:0 0 auto;padding:8px 12px;border-radius:10px;background:#0c170e;color:var(--fg);border:1px solid rgba(0,200,5,.4);font-size:1em;font-weight:700}
-  .qtyrow .est{font-size:.82em;color:var(--muted)}
-  .qtyrow .est b{color:var(--green)}
-  .step a:hover{text-decoration:underline}
-  button{width:100%;padding:15px;border:0;border-radius:12px;font-size:1.05em;font-weight:800;cursor:pointer;margin-top:6px;color:#04140a;background:linear-gradient(90deg,var(--green2),var(--green));transition:.2s}
-  button:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px)}
-  button:disabled{background:#1c2a1a;color:#5e725c;cursor:not-allowed}
-  #status{margin-top:14px;font-size:.9em;min-height:1.2em;text-align:center}
-  .ok{color:var(--green)} .err{color:#ff7a7a}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:12px;font-weight:800;text-decoration:none;font-size:1em;transition:.2s}
+  .btn.primary{background:linear-gradient(90deg,var(--green2),var(--green));color:#04140a}
+  .btn.ghost{border:1px solid rgba(0,200,5,.4);color:var(--green)}
+  .btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .badge{display:inline-block;background:rgba(0,200,5,.12);border:1px solid rgba(0,200,5,.4);color:var(--green);padding:6px 14px;border-radius:999px;font-size:.8em;font-weight:700;margin-bottom:10px}
   footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.8em;border-top:1px solid rgba(0,200,5,.12);line-height:1.7}
   footer a{color:var(--green);text-decoration:none}
-  @media(max-width:720px){.hero{grid-template-columns:1fr}.nav a{display:none}.nav .cta{display:inline-block}}
+  @media(max-width:720px){.hero{grid-template-columns:1fr}.nav a:not(.cta){display:none}}
 </style>
 </head>
 <body>
@@ -69,20 +56,24 @@
   <div>
     <a href="#manifesto">MANIFESTO</a>
     <a href="#roadmap">ROADMAP</a>
-    <a href="#mint">MINT</a>
-    <a class="cta" href="#mint">LAUNCH APP</a>
+    <a href="#join">JOIN</a>
+    <a class="cta" href="https://x.com/hoodzillas" target="_blank" rel="noopener">FOLLOW @hoodzillas</a>
   </div>
 </nav>
 
 <section class="hero">
   <div>
-    <div class="eyebrow">● ROBINHOOD CHAIN · 4,444 SUPPLY</div>
-    <h1>GREEN ZILLAS.</h1>
-    <p class="lead">Hoodzillas are 4,444 on-chain characters living on Robinhood Chain, reimagined in Robinhood green. Free mint for the first 5, then 0.0001 ETH. Do the steps, claim your Hood.</p>
+    <div class="eyebrow">● ROBINHOOD CHAIN · 2,222 SUPPLY</div>
+    <h1>GREEN ZILLA on ROBINHOOD</h1>
+    <p class="lead">2,222 on-chain warriors forged on Robinhood Chain — emerald skins, near-zero gas. Mint 5 free per wallet, then 0.0001 ETH. Follow, retweet, connect, and claim your spot in the Hood.</p>
     <div class="stats">
-      <div class="stat"><b id="sMinted">—</b><span>MINTED</span></div>
-      <div class="stat"><b>4,444</b><span>SUPPLY</span></div>
-      <div class="stat"><b>0.0001</b><span>ETH AFTER FREE</span></div>
+      <div class="stat"><b>2,222</b><span>SUPPLY</span></div>
+      <div class="stat"><b>5</b><span>FREE / WALLET</span></div>
+      <div class="stat"><b>0.0001</b><span>ETH / MINT AFTER</span></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="https://x.com/hoodzillas" target="_blank" rel="noopener">Follow on X</a>
+      <a class="btn ghost" href="#roadmap">See Roadmap</a>
     </div>
   </div>
   <div class="art">
@@ -94,12 +85,12 @@
 <section id="manifesto">
   <div class="eyebrow">MANIFESTO</div>
   <h2>NOT JUST A MINT. A HOOD WITH RECEIPTS.</h2>
-  <p class="lead">Hoodzilla starts as characters because the brand needs a living engine: holders, raids, drops, and status. The Robinhood Chain gives every mint near-zero gas, so the barrier is intention, not cost. Green is the uniform — emerald backgrounds, Robinhood-green skin, eyes, and heads.</p>
+  <p class="lead">Hoodzilla isn't a JPEG — it's a faction. Every Hoodzilla is a warrior on Robinhood Chain: emerald-born, gas-cheap, built to fight. The Hood runs on holders, not hype. Mint, rally, and gear up for Zilla Fight — where winners take $ZILLA.</p>
   <div class="grid">
-    <div class="card"><h3>CHARACTERS</h3><p>4,444 unique Hoodzillas, each with on-chain metadata and art hosted on GitHub Pages.</p></div>
+    <div class="card"><h3>WARRIORS</h3><p>2,222 unique Hoodzillas, each with on-chain metadata and art hosted on GitHub Pages.</p></div>
     <div class="card"><h3>CHAIN</h3><p>Built on Robinhood Chain (4663) for cheap, fast mints anyone can afford.</p></div>
     <div class="card"><h3>COMMUNITY</h3><p>Follow + retweet gates real humans into the mint, not bots.</p></div>
-    <div class="card"><h3>ROADMAP</h3><p>Mint funds a rewards runway and future drops. Transparent by default.</p></div>
+    <div class="card"><h3>ZILLA FIGHT</h3><p>On-chain battles. Winners earn $ZILLA, the Hood's native token.</p></div>
   </div>
 </section>
 
@@ -107,142 +98,28 @@
   <div class="eyebrow">LAUNCH PATH</div>
   <h2>MINT FIRST. EXPAND WITH INTENTION.</h2>
   <div style="margin-top:22px">
-    <div class="phase"><span>PHASE 01</span><h3>Hoodzilla Mint</h3><p>Free mint 5/wallet, then 0.0001 ETH. Max 20 per wallet. Live on Robinhood Chain.</p></div>
+    <div class="phase"><span>PHASE 01</span><h3>Hoodzilla Mint</h3><p>Free mint 5/wallet, then 0.0001 ETH. Max 20 per wallet. 2,222 supply on Robinhood Chain.</p></div>
     <div class="phase"><span>PHASE 02</span><h3>Holder Perks</h3><p>Allowlist for future drops, community roles, and reward loops for active holders.</p></div>
     <div class="phase"><span>PHASE 03</span><h3>Goods &amp; Collabs</h3><p>Robinhood-green merch prototypes and collabs funded by mint treasury.</p></div>
-    <div class="phase"><span>PHASE 04</span><h3>Live Economy</h3><p>Staking, raffles, and a self-sustaining Hood economy on Robinhood Chain.</p></div>
+    <div class="phase"><span>PHASE 04</span><h3>ZILLA FIGHT</h3><p>On-chain battles. Winners earn $ZILLA. A live Hood economy on Robinhood Chain.</p></div>
   </div>
 </section>
 
-<section id="mint">
-  <div class="eyebrow">MINT</div>
-  <h2>CLAIM YOUR HOODZILLA.</h2>
-  <div class="mintcard">
-    <div class="progress"><i id="bar"></i></div>
-    <div class="row"><span id="minted">— / 4444</span><span id="left"></span></div>
-    <div class="step"><input type="checkbox" id="c1"><div>1. Follow <a href="https://x.com/hoodzillas" target="_blank" rel="noopener">@hoodzillas</a> on X</div></div>
-    <div class="step"><input type="checkbox" id="c2"><div>2. Retweet the announcement:<br><a href="https://x.com/hoodzillas/status/1" target="_blank" rel="noopener">x.com/hoodzillas/status/1</a></div></div>
-    <div class="step"><input type="checkbox" id="c3"><div>3. I completed both &amp; mint on Robinhood Chain (chainId 4663)</div></div>
-
-    <div class="qtyrow">
-      <label for="qty">How many?</label>
-      <select id="qty">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-      </select>
-      <span id="est" class="est"></span>
-    </div>
-
-    <button id="connect" disabled>Connect Wallet</button>
-    <button id="mint" disabled>Mint Hoodzilla</button>
-    <div id="status"></div>
+<section id="join">
+  <div class="eyebrow">JOIN THE HOOD</div>
+  <h2>BE EARLY. BE GREEN.</h2>
+  <p class="lead">Mint opens soon after relaunch. Follow @hoodzillas, turn on notifications, and be ready — the first 5 per wallet are free.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://x.com/hoodzillas" target="_blank" rel="noopener">Follow @hoodzillas</a>
+    <a class="btn ghost" href="https://x.com/hoodzillas" target="_blank" rel="noopener">Retweet the drop</a>
   </div>
 </section>
 
 <footer>
-  Contract: 0x63124f85096791B94748cB88786Cd649bb246F2E<br>
+  Contract (current): 0x63124f85096791B94748cB88786Cd649bb246F2E<br>
+  Art &amp; metadata: <a href="https://hoodzillas.github.io/hoodzillas/" target="_blank" rel="noopener">hoodzillas.github.io</a> ·
+  X: <a href="https://x.com/hoodzillas" target="_blank" rel="noopener">@hoodzillas</a><br>
   © 2026 Hoodzilla
 </footer>
-
-<script>
-const CONTRACT="0x63124f85096791B94748cB88786Cd649bb246F2E";
-const RPC="https://rpc.mainnet.chain.robinhood.com";
-const CHAIN_ID=4663;
-const ABI=[{"inputs":[{"internalType":"string","name":"_baseURI","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"FREE_PER_WALLET","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAX_PER_WALLET","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"n","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"minted","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
-
-const c1=document.getElementById('c1'),c2=document.getElementById('c2'),c3=document.getElementById('c3');
-const connectBtn=document.getElementById('connect'),mintBtn=document.getElementById('mint');
-const statusEl=document.getElementById('status'),bar=document.getElementById('bar');
-const mintedEl=document.getElementById('minted'),leftEl=document.getElementById('left'),sMinted=document.getElementById('sMinted');
-const qtySel=document.getElementById('qty'),estEl=document.getElementById('est');
-let signer,contract,provider;
-let userMintedCached=0n;
-
-function gateOk(){return c1.checked&&c2.checked&&c3.checked;}
-function refresh(){connectBtn.disabled=!gateOk();if(signer)mintBtn.disabled=!gateOk();}
-[c1,c2,c3].forEach(c=>c.onchange=refresh);
-
-function updateEst(){
-  const n=BigInt(qtySel.value);
-  const freeLeft=(userMintedCached<5n)?5n-userMintedCached:0n;
-  const paid=n>freeLeft?n-freeLeft:0n;
-  const free=n-paid;
-  let txt='<b>'+free.toString()+'</b> free · <b>'+paid.toString()+'</b> paid';
-  if(paid>0n) txt+=' · '+(Number(paid)*0.0001).toFixed(4)+' ETH';
-  estEl.innerHTML=txt;
-}
-qtySel.onchange=updateEst;
-
-async function loadStats(){
-  try{
-    const p=new ethers.JsonRpcProvider(RPC);
-    const c=new ethers.Contract(CONTRACT,ABI,p);
-    const n=await c.nextId(); const total=n-1n;
-    const pct=Number(total*10000n/4444n)/100;
-    bar.style.width=pct+'%';
-    const t=total.toString();
-    mintedEl.textContent=t+' / 4444';
-    sMinted.textContent=t;
-    leftEl.textContent=(4444-Number(total))+' left';
-    if(signer){
-      const addr=await signer.getAddress();
-      userMintedCached=await c.minted(addr);
-      updateEst();
-    }
-  }catch(e){mintedEl.textContent='live stats unavailable';}
-}
-loadStats(); setInterval(loadStats,15000);
-
-connectBtn.onclick=async()=>{
-  try{
-    if(!window.ethereum){statusEl.innerHTML='<span class="err">Install Rabby/Metamask</span>';return;}
-    await window.ethereum.request({method:'eth_requestAccounts'});
-    provider=new ethers.BrowserProvider(window.ethereum);
-    const net=await provider.getNetwork();
-    if(Number(net.chainId)!==CHAIN_ID){
-      try{await window.ethereum.request({method:'wallet_switchEthereumChain',params:[{chainId:'0x1237'}]});}
-      catch(e){statusEl.innerHTML='<span class="err">Switch to Robinhood Chain manually</span>';return;}
-    }
-    signer=await provider.getSigner();
-    contract=new ethers.Contract(CONTRACT,ABI,signer);
-    mintBtn.disabled=!gateOk();
-    statusEl.innerHTML='<span class="ok">Wallet connected</span>';
-    await loadStats();
-  }catch(e){statusEl.innerHTML='<span class="err">'+e.message+'</span>';}
-};
-
-mintBtn.onclick=async()=>{
-  if(!gateOk()){statusEl.innerHTML='<span class="err">Complete all 3 steps</span>';return;}
-  if(!contract){statusEl.innerHTML='<span class="err">Connect wallet</span>';return;}
-  try{
-    mintBtn.disabled=true;
-    const addr=await signer.getAddress();
-    userMintedCached=await contract.minted(addr);
-    const freeLeft=(userMintedCached<5n)?5n-userMintedCached:0n;
-    const n=BigInt(qtySel.value);
-    if(userMintedCached+n>20n){statusEl.innerHTML='<span class="err">Max 20 per wallet (you minted '+userMintedCached.toString()+')</span>';mintBtn.disabled=!gateOk();return;}
-    const paid=n>freeLeft?n-freeLeft:0n;
-    const price=await contract.PRICE();
-    const value=paid*price;
-    updateEst();
-    statusEl.innerHTML='Minting '+n.toString()+'…';
-    const tx=await contract.mint(n,{value});
-    statusEl.innerHTML='Tx: '+tx.hash.slice(0,12)+'…';
-    await tx.wait();
-    statusEl.innerHTML='<span class="ok">Minted '+n.toString()+'! Welcome to the Hood.</span>';
-    await loadStats();
-  }catch(e){statusEl.innerHTML='<span class="err">'+e.message+'</span>';mintBtn.disabled=!gateOk();}
-};
-</script>
 </body>
 </html>
